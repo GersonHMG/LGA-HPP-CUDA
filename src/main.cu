@@ -57,12 +57,19 @@ void StartSimulation() {
 
     // Generate experiment
     experiment_2(r_grid, size_x);
-
+    
+    bool wait = true;
     while (WINDOW.isOpen()) {
         WINDOW.clear( sf::Color(0, 0, 0) );
         sf::Event event;
         while (WINDOW.pollEvent(event)) {
             if (event.type == sf::Event::Closed) { WINDOW.close(); }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+                    wait = false;
+            }
+        }
+        if(wait){
+            continue;
         }
         drawGrid(&WINDOW, r_grid, size_x, size_y);
         nextStep(r_grid, size_x, size_y);
@@ -74,7 +81,7 @@ void StartSimulation() {
 int main(){
     printf("Running... \n");
 
-    WINDOW.create( sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, 32), "pene" );
+    WINDOW.create( sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, 32), "LGA HPP" );
     WINDOW.setFramerateLimit(60);
 
     StartSimulation();
