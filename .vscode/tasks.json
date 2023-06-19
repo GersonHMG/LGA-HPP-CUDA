@@ -1,0 +1,39 @@
+{
+
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build",
+            "type": "shell",
+            "command": "nvcc",
+            "problemMatcher": [],
+            "options": {
+                "cwd":"${workspaceFolder}"
+            },
+            "args": [
+                "-I",
+                "./src",
+                "-I",
+                "./include",
+                "--library-path=./lib",
+                "--library=sfml-graphics",
+                "--library=sfml-window",
+                "--library=sfml-system",
+                "-o",
+                "bin/test",
+                "${file}" 
+            ],
+            
+        },
+        {
+            "label": "Run",
+            "type": "shell",
+            "command": ["${workspaceFolder}/bin/test.exe"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOn": ["Build"]
+        }
+    ]
+}
