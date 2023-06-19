@@ -4,7 +4,7 @@
 #include <iostream>
 #include <cuda_runtime.h>
 
-// If has a particle in the same node with opposite direction
+// If there is a particle in the same node with the opposite direction.
 __device__ bool isColliding(int *cells, int cell_index, int particle_dir){
    int opposite_dir = (particle_dir + 2)%4;
     if ((cells[cell_index + opposite_dir] >= 1) ){
